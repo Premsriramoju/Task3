@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+   
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ebd7d7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #5c879e;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .dashboard-info {
+            margin-bottom: 20px;
+        }
+        .dashboard-info p {
+            margin: 10px 0;
+        }
+        .chart-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        #revenue-chart {
+            height: 300px;
+            background-color: #e6f168;
+        }
+        .dropdown-container {
+            margin-bottom: 20px;
+        }
+        .dropdown-container select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dashboard</h2>
+        <div class="dashboard-info">
+            <p>Total Revenue: $64,492</p>
+            <p>Total Jobs Average: $608</p>
+            <p>Tickets Created: 106</p>
+            <p>Tickets Scheduled: 66</p>
+            <p>Outstanding Amount: $19,304</p>
+            <p>Membership Sold: 0</p>
+            <p>Jobs Completed: 8</p>
+            <p>Total Cancelled: 2</p>
+        </div>
+        <div class="chart-container">
+            
+            <canvas id="revenue-by-location-chart"></canvas>
+        </div>
+        <div class="chart-container">
+           
+            <canvas id="revenue-by-job-type-chart"></canvas>
+        </div>
+    </div>
+
+    <script>
+      
+const revenueByLocationData = {
+    labels: ['Dubai', 'Bombay', 'Delhi','Bangalore','UAE','NEW YORK'],
+    datasets: [{
+        label: 'Revenue by Job Location',
+        data: [5000, 7000, 6000,3000,8000,4000], // Sample revenue by job location data
+        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1
+    }]
+};
+
+
+const revenueByJobTypeData = {
+    labels: ['SALES', 'MARKETING', 'SOFTWARE', 'TECHNICAL','HARDWARE'],
+    datasets: [{
+        label: 'Revenue by Job Type',
+        data: [3000, 4000, 3500, 2500,5600], // Sample revenue by job type data
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+    }]
+};
+
+
+const revenueByLocationCtx = document.getElementById('revenue-by-location-chart').getContext('2d');
+new Chart(revenueByLocationCtx, {
+    type: 'bar',
+    data: revenueByLocationData,
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+const revenueByJobTypeCtx = document.getElementById('revenue-by-job-type-chart').getContext('2d');
+new Chart(revenueByJobTypeCtx, {
+    type: 'bar',
+    data: revenueByJobTypeData,
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+    </script>
+</body>
+</html>
